@@ -59,18 +59,6 @@ public:
     }
 };
 
-vector <Binomial_vertex> global_binomial_vertex;
-
-Binomial_vertex * create_binomial_vertex(int key)
-{
-    /*Binomial_vertex new_vertex;
-    return &new_vertex;*/
-    if (global_binomial_vertex.empty())
-        global_binomial_vertex.reserve(INF);
-    global_binomial_vertex.push_back(Binomial_vertex(key));
-    return &global_binomial_vertex.back();
-}
-
 void merge_vertex(Binomial_vertex * base, Binomial_vertex * another)
 {
     if (*another < *base)
@@ -90,9 +78,9 @@ public:
     Binomial_heap(){};
     Binomial_heap(int key)
     {
-        //Binomial_vertex new_vertex = Binomial_vertex(key);
-        //vertex.push_back(&new_vertex);
-        vertex.push_back(create_binomial_vertex(key));
+        Binomial_vertex * new_vertex = new Binomial_vertex;
+        new_vertex->key = key;
+        vertex.push_back(new_vertex);
         used.push_back(1);
     }
     Binomial_heap(Binomial_vertex * main)
@@ -119,9 +107,8 @@ public:
     }
     void insert(int key)
     {
-        //Binomial_vertex new_vertex = Binomial_vertex(key);
-        //Binomial_vertex * new_ver = &new_vertex;
-        Binomial_vertex * new_ver = create_binomial_vertex(key);
+        Binomial_vertex * new_ver = new Binomial_vertex;
+        new_ver->key = key;
         bool finish = false;
         for (int i = 0; i < used.size(); i++)
         {
@@ -345,28 +332,17 @@ Leftist_vertex * merge_leftist_vertex(Leftist_vertex * base, Leftist_vertex * an
     return base;
 }
 
-vector <Leftist_vertex> global_leftist_vertex;
-
-Leftist_vertex * create_leftist_vertex(int key)
-{
-    /*Binomial_vertex new_vertex;
-    return &new_vertex;*/
-    if (global_leftist_vertex.empty())
-        global_leftist_vertex.reserve(INF);
-    global_leftist_vertex.push_back(Leftist_vertex(key));
-    return &global_leftist_vertex.back();
-}
-
 class Leftist_heap
 {
 public:
     Leftist_vertex *root;
     Leftist_heap(){};
+     ~Leftist_heap(){};
     Leftist_heap(int key)
     {
-        //Leftist_vertex r = Leftist_vertex(key);
-        //root = &r;
-        root = create_leftist_vertex(key);
+        root = new Leftist_vertex;
+        root->key = key;
+        root->rang = 1;
     }
     void meld(Leftist_heap another)
     {
@@ -469,28 +445,16 @@ Skew_vertex * merge_skew_vertex(Skew_vertex * base, Skew_vertex * another)
     return base;
 }
 
-vector <Skew_vertex> global_skew_vertex;
-
-Skew_vertex * create_skew_vertex(int key)
-{
-    /*Binomial_vertex new_vertex;
-    return &new_vertex;*/
-    if (global_skew_vertex.empty())
-        global_skew_vertex.reserve(INF);
-    global_skew_vertex.push_back(Skew_vertex(key));
-    return &global_skew_vertex.back();
-}
-
 class Skew_heap
 {
 public:
     Skew_vertex *root;
     Skew_heap(){};
+    ~Skew_heap(){};
     Skew_heap(int key)
     {
-        //Skew_vertex r = Skew_vertex(key);
-        //root = &r;
-        root = create_skew_vertex(key);
+        root = new Skew_vertex;
+        root->key = key;
     }
     void meld(Skew_heap another)
     {
