@@ -264,6 +264,10 @@ public:
             }
         }
     }
+    HeapType get_heap_type()
+    {
+        return HeapType::BINOMIAL;
+    }
 };
 
 //////////////
@@ -398,6 +402,10 @@ public:
             }
         }
     }
+    HeapType get_heap_type()
+    {
+        return HeapType::LEFTIST;
+    }
 };
 
 //////
@@ -509,6 +517,10 @@ public:
                 heaps.pop_back();
             }
         }
+    }
+    HeapType get_heap_type()
+    {
+        return HeapType::SKEW;
     }
 };
 
