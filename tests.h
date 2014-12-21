@@ -3,14 +3,11 @@
 #include "vertex.h"
 #include "heaps.h"
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <ctime>
 #include <set>
 
 using namespace std;
-
-ofstream out("heap_time.txt");
 
 const size_t HEAP_SIZE_TO_MELD = 5000;
 
@@ -78,27 +75,23 @@ double randomInsertExtract(RandHeap &H, unsigned int numberOfTests)
 void testingTimeBHeap(unsigned int numberOfTests)
 {
 	MHeap::BHeap BH;
-	//cerr << "BHeap works on " << numberOfTests << " tests in " << randomInsertExtract(BH, numberOfTests) << "\n";
-	out << randomInsertExtract(BH, numberOfTests) << ' ';
+	cerr << "BHeap works on " << numberOfTests << " tests in " << randomInsertExtract(BH, numberOfTests) << "\n";
 }
 
 void testingTimeSHeap(unsigned int numberOfTests)
 {
 	MHeap::SHeap SH;
-	//cerr << "SHeap works on " << numberOfTests << " tests in " << randomInsertExtract(SH, numberOfTests) << "\n";
-	out << randomInsertExtract(SH, numberOfTests) << ' ';
+	cerr << "SHeap works on " << numberOfTests << " tests in " << randomInsertExtract(SH, numberOfTests) << "\n";
 }
 
 void testingTimeLHeap(unsigned int numberOfTests)
 {
 	MHeap::LHeap LH;
-	//cerr << "LHeap works on " << numberOfTests << " tests in " << randomInsertExtract(LH, numberOfTests) << "\n";
-	out << randomInsertExtract(LH, numberOfTests) << "\n";
+	cerr << "LHeap works on " << numberOfTests << " tests in " << randomInsertExtract(LH, numberOfTests) << "\n";
 }
 
 void testingTime(unsigned int numberOfTests)
 {
-	out << numberOfTests << ": ";
 	testingTimeBHeap(numberOfTests);
 	testingTimeSHeap(numberOfTests);
 	testingTimeLHeap(numberOfTests);
